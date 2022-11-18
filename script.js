@@ -8,3 +8,7 @@
 //use text area for the input field-pref 
 //use button for save element 
 // querySelectorAll
+function getCurrentDate() {
+    var currentDate = moment().format('dddd, MMMM Do');
+    $("#currentDay").text(currentDate);
+};
