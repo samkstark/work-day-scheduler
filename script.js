@@ -8,7 +8,26 @@
 //use text area for the input field-pref 
 //use button for save element 
 // querySelectorAll
-function getCurrentDate() {
-    var currentDate = moment().format('dddd, MMMM Do');
-    $("#currentDay").text(currentDate);
+
+//current day displayed in top field
+$("#currentDay").text(moment().format('dddd MMMM Do YYYY'));
+
+//time block color coding to indicate whether task is in the past, present, or future
+function timeblockColor() {
+    var hour = moment().hours();
+
+$(".time-block").each(function () {
+    var currentHour = parseInt($(this).attr("id"));
+    if (currentHour < hour) {
+        $(this).addClass("past");
+    } else if (currentHour === hour) {
+        $(this).addClass("present");
+    } else {
+        $(this).addClass("future");
+    }
+})
+
 };
+timeblockColor();
+
+var saveBtn = $(".saveBtn");
