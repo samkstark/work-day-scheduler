@@ -13,21 +13,48 @@
 $("#currentDay").text(moment().format('dddd MMMM Do YYYY'));
 
 //time block color coding to indicate whether task is in the past, present, or future
+
+$(document).ready(function() {
+    timeblockColor ();
+});
+
 function timeblockColor() {
-    var hour = moment().hours();
+    var currentTime = moment().hours();
+   
 
 $(".time-block").each(function () {
-    var currentHour = parseInt($(this).attr("id"));
-    if (currentHour < hour) {
-        $(this).addClass("past");
-    } else if (currentHour === hour) {
-        $(this).addClass("present");
-    } else {
-        $(this).addClass("future");
-    }
-})
+    var scheduledTime = parseInt($(this).attr("id"));
+   console.log(scheduledTime);
 
-};
-timeblockColor();
-
+   if (currentTime > scheduledTime) {
+    $(this).addClass("past");
+   } else if (currentTime < scheduledTime) {
+    $(this).addClass("future");
+   } else {
+    $(this).addClass("present");
+   }
+});
+} 
 var saveBtn = $(".saveBtn");
+saveBtn.on("click", function() {
+
+    var time = $(this).siblings(".hour").text();
+    var planner = $(this).siblings(".planner").val();
+
+    localStorage.setItem(time, planner);
+});
+
+function scheduler() {
+
+    $(".hour").each(function(){
+        var currentTime = $(this).text();
+        var currentSchedule = localStorage.getItem(currentTime);
+
+    if (currentSchedule !== null) {
+        $(this).siblings(".planner").val(currentSchedule);
+    }
+});
+}
+
+timeblockColor();
+scheduler();
