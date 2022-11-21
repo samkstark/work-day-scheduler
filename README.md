@@ -11,6 +11,7 @@ Deployed link: https://samkstark.github.io/work-day-scheduler/
 
 ## Usage
 
+![Screenshots](./Assets/scheduler.jpg) 
 
 ## Credits
 
