@@ -39,7 +39,7 @@ var saveBtn = $(".saveBtn");
 saveBtn.on("click", function() {
 
     var time = $(this).siblings(".hour").text();
-    var planner = $(this).siblings(".planner").val();
+    var planner = $(this).siblings(".description").val();
 
     localStorage.setItem(time, planner);
 });
