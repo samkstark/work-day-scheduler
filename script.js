@@ -23,7 +23,7 @@ function timeblockColor() {
    
 
 $(".time-block").each(function () {
-    var scheduledTime = parseInt($(this).attr("id"));
+    var scheduledTime = parseInt($(this).attr("id").split("-")[1]);
    console.log(scheduledTime);
 
    if (currentTime > scheduledTime) {
